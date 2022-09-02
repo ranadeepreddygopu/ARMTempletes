@@ -1,0 +1,46 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "name": "JavaActiveServicePlan",
+            "type": "Microsoft.Web/serverfarms",
+            "apiVersion": "2020-12-01",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "F1",
+                "capacity": 1
+            },
+            "tags": {
+                "displayName": "JavaActiveServicePlan"
+            },
+            "properties": {
+                "name": "JavaActiveServicePlan"
+            }
+        },
+        {
+            "name": "rana777",
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2020-12-01",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/appServicePlan1')]": "Resource",
+                "displayName": "webApp1"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', 'JavaActiveServicePlan')]"
+            ],
+            "properties": {
+                "name": "rana777",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'JavaActiveServicePlan')]",
+                "javaVersion": "1.8",
+                "javaContainer": "TOMCAT",
+                "javaContainerVersion": "9.0"
+            }
+        }
+    ],
+    "outputs": {}
+}
