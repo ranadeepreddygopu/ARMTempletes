@@ -6,7 +6,7 @@
     "variables": {},
     "resources": [
         {
-            "name": "JavaActiveServicePlan",
+            "name": "JavaActiveServicePlan1",
             "type": "Microsoft.Web/serverfarms",
             "apiVersion": "2020-12-01",
             "location": "[resourceGroup().location]",
